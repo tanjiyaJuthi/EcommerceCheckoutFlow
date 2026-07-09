@@ -95,7 +95,13 @@ const Checkout = () => {
 
         // console.log([...submitData.entries()]);
 
-        navigate("/order-details");
+        navigate("/order-details", {
+            state: {
+                orderId: 1234,
+                userData: formData,
+                cart,
+            },
+        });
     };
 
     if (!cart) {
