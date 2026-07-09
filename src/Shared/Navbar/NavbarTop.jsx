@@ -76,25 +76,27 @@ const NavbarTop = () => {
         <div
           className="flex flex-col items-center justify-center text-text_sm font-semibold relative group"
         >
-          <Link to="/cart">
-              <CiShoppingCart />
-
-              {cart && (
-                  <span>
-                      {cart.quantity}
-                  </span>
-              )}
-          </Link>
-
           <div className="flex items-center gap-8">
-          <h1 className="text-blue-500 text-xl font-medium">{userData?.userData.name}</h1>
-         {userData?.userData.image ? 
-         <img
-            className="w-[40px] h-[40px] rounded-full"
-            src={`${imgUrl}${userData.userData.image}`}
-            alt=""
-          /> : 
-          <FaUserCircle className="w-[40px] h-[40px] rounded-full text-black" />}
+            <Link
+                to="/cart"
+                className="relative inline-flex items-center justify-center bg-black text-white rounded-full p-2"
+            >
+                <CiShoppingCart className="text-2xl" />
+
+                {cart && (
+                    <span className="absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white">
+                        {cart.quantity}
+                    </span>
+                )}
+            </Link>
+            <h1 className="text-blue-500 text-xl font-medium">{userData?.userData.name}</h1>
+            {userData?.userData.image ? 
+            <img
+                className="w-[40px] h-[40px] rounded-full"
+                src={`${imgUrl}${userData.userData.image}`}
+                alt=""
+              /> : 
+              <FaUserCircle className="w-[40px] h-[40px] rounded-full text-black" />}
           </div>
 
           <div className="absolute top-10 right-3 bg-_white shadow-md rounded-sm overflow-hidden pt-2 w-48 z-10 group-hover:scale-100 transition-transform duration-300 transform origin-top-right scale-0">
