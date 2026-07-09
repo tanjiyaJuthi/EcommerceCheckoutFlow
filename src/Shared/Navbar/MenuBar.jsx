@@ -19,7 +19,6 @@ const MenuBar = () => {
   const {setOpen} = useContext(OrderContext);
   const [isSmallScreen] = useSmallScreen();
 
-
   useEffect(() => {
     setSelected(location.pathname);
   }, [location.pathname]);
@@ -30,8 +29,6 @@ const MenuBar = () => {
       setOpen(false)
     }
   };
-
-
 
   return (
     <div className="shadow-md bg-_white h-screen overflow-y-auto text-black p-pl_16px font_sans ">

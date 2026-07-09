@@ -11,13 +11,18 @@ import "primereact/resources/themes/lara-light-cyan/theme.css";
 import BasicProvider from "./ContextAPIs/BasicProvider.jsx";
 import 'aos/dist/aos.css';
 
+import CartProvider from "../src/ContextAPIs/CartContext";
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <>
     <ToastContainer />
+    
     <QueryClientProvider client={queryClient}>
       <OrderProvider>
         <BasicProvider>
-          <RouterProvider router={Router} />
+          <CartProvider>
+            <RouterProvider router={Router} />
+          </CartProvider>
         </BasicProvider>
       </OrderProvider>
     </QueryClientProvider>

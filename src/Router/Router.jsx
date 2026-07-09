@@ -10,13 +10,11 @@ import OrderDetails from "../Page/OrderDetails/OrderDetails";
 import Checkout from "../Page/Checkout/Checkout";
 import Search from "../Page/Search/Search";
 
-
 const Router = createBrowserRouter([
     {
         path: '/',
         element: <Layout />,
         children: [
-           
             {
                 path: '/course',
                 element: <Courses />
@@ -36,10 +34,7 @@ const Router = createBrowserRouter([
             {
                 path : '/order-details',
                 element : <OrderDetails />
-            },
-
-           
-           
+            },           
         ]
     },
     {

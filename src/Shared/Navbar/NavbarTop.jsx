@@ -7,6 +7,8 @@ import { toast } from "react-toastify";
 import useUser from "../../Security/useUser";
 import { FaUserCircle } from "react-icons/fa";
 import useSmallScreen from "../../Hooks/useSmallScreen";
+import {CartContext} from "../../ContextAPIs/CartContext";
+import { CiShoppingCart } from "react-icons/ci";
 
 const NavbarTop = () => {
   const { open, setOpen, sidebarRef } = useContext(OrderContext);
@@ -16,6 +18,7 @@ const NavbarTop = () => {
   const [userData, ,refetch] = useUser();
   const imgUrl = `https://littleaccount.com/uploads/userProfile/`
 
+  const { cart } = useContext(CartContext);
 
   const handleLogout = async () => {
     try {
@@ -32,7 +35,6 @@ const NavbarTop = () => {
     }
   }
 
- 
   const handleClickOutside = (event) => {
     if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
       setOpen(false);
@@ -74,6 +76,16 @@ const NavbarTop = () => {
         <div
           className="flex flex-col items-center justify-center text-text_sm font-semibold relative group"
         >
+          <Link to="/cart">
+              <CiShoppingCart />
+
+              {cart && (
+                  <span>
+                      {cart.quantity}
+                  </span>
+              )}
+          </Link>
+
           <div className="flex items-center gap-8">
           <h1 className="text-blue-500 text-xl font-medium">{userData?.userData.name}</h1>
          {userData?.userData.image ? 
