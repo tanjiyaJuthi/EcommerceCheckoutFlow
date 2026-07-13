@@ -8,45 +8,45 @@ const Courses = () => {
   const [loading, setLoading] = useState(true);
 
   // real api
-  // useEffect(() => {
-  //     const fetchCourse = async () => {
-  //         try {
-  //             const res = await fetch(`${import.meta.env.VITE_PROJECT_URL}/api/get-course-list`);
-  //             const data = await res.json();
-
-  //             console.log(data.courseData);
-
-  //             setCourses(data.courseData || []);
-  //         } catch (error) {
-  //             if (import.meta.env.DEV) {
-  //                 console.error(error);
-  //             }
-  //         } finally {
-  //             setLoading(false);
-  //         }
-  //     }
-
-  //     fetchCourse();
-  // }, []);
-
   useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const res = await fetch("/data.json");
-        const data = await res.json();
+      const fetchCourse = async () => {
+          try {
+              const res = await fetch(`${import.meta.env.VITE_PROJECT_URL}/api/get-course-list`);
+              const data = await res.json();
 
-        setCourses(data);
-      } catch (error) {
-        if (import.meta.env.DEV) {
-          console.error(error);
-        }
-      } finally {
-        setLoading(false);
+              // console.log(data.courseData);
+
+              setCourses(data.courseData || []);
+          } catch (error) {
+              if (import.meta.env.DEV) {
+                  console.error(error);
+              }
+          } finally {
+              setLoading(false);
+          }
       }
-    };
 
-    fetchCourses();
+      fetchCourse();
   }, []);
+
+  // useEffect(() => {
+  //   const fetchCourses = async () => {
+  //     try {
+  //       const res = await fetch("/data.json");
+  //       const data = await res.json();
+
+  //       setCourses(data);
+  //     } catch (error) {
+  //       if (import.meta.env.DEV) {
+  //         console.error(error);
+  //       }
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
+
+  //   fetchCourses();
+  // }, []);
 
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
