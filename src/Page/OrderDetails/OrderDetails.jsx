@@ -5,13 +5,9 @@ import { useLocation } from "react-router-dom";
 const OrderDetails = () => {
     const location = useLocation();
 
-    const {
-        orderId,
-        userData,
-        cart
-    } = location.state || {};
+    const { order, course } = location.state || {};
 
-    if (!location.state) {
+    if (!order || !course) {
         return (
             <h2 className="text-center text-2xl mt-10">
                 No order found.
@@ -20,7 +16,6 @@ const OrderDetails = () => {
     }
 
     return (
-        
             <div className=" m-mt_16px">
                 <div className="w-full flex flex-col lg:flex-row items-start justify-center h-full gap-2 ">
                     <div className="bg-white lg:p-p_30px w-full  ">
@@ -29,7 +24,7 @@ const OrderDetails = () => {
                             <p className="p-3 rounded-md lg:my-2 my-1 w-fit border bg-[#D2C5A2] font-bold text-lg">
                                 Order Id :
                                 <span className="font-semibold">
-                                  {orderId}
+                                  {order.form_no}
                                 </span>
                             </p>
                         </div>
@@ -41,22 +36,22 @@ const OrderDetails = () => {
                                     <div className="flex items-center justify-between">
                                         <p>Full Name :</p>
                                         <p className="text-start">
-                                            {userData.name}
+                                            {order.name}
                                         </p>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <p>Permanent Address :</p>
                                         <p className="text-start">
-                                            {userData.permanent_address}
+                                            {order.permanent_address}
                                         </p>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <p>Present Address :</p>
-                                        <p>{userData.present_address    }</p>
+                                        <p>{order.present_address    }</p>
                                     </div>
                                     <div className="flex items-center justify-between">
                                         <p>Mobile :</p>
-                                        <p>{userData.phone_no}</p>
+                                        <p>{order.phone_no}</p>
                                     </div>
                                 </div>
                             </div>
@@ -67,13 +62,13 @@ const OrderDetails = () => {
                                 <div className="flex items-center justify-between">
                                     <p>Subtotal Amount :</p>
                                     <p className="text-start">
-                                        {cart.sub_total_course_fee}
+                                        {order.sub_total_course_fee}
                                     </p>
                                 </div>
                                 <div className="flex items-center justify-between">
                                     <p>Total Amount :</p>
                                     <p className="text-start">
-                                        {cart.total_course_fee}
+                                        {order.total_course_fee}
                                     </p>
                                 </div>
                             </div>
@@ -106,32 +101,35 @@ const OrderDetails = () => {
                                     </tr>
                                 </thead>
                                 <tbody className="md:text-base text-sm font-semibold">
-                                  
-                                        <tr >
-                                            <td className="border text-center w-10 h-12 px-2">
-                                                <img
-                                                    className=" w-full h-full object-cover mx-auto"
-                                                    src={cart.photo}
-                                                    alt={cart.course_name}
-                                                />
-                                            </td>
-                                            <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                               {cart.course_name}
-                                            </td>
-                                            <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                               {userData.name}
-                                            </td>
-                                            <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                               {cart.quantity}
-                                            </td>
-                                            <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                                {userData.course_fee}
-                                            </td>
-                                            <td className="lg:py-6 md:py-4 py-2 text-center border">
-                                               {userData.total_course_fee}
-                                            </td>
-                                        </tr>
-                                    
+                                    <tr>
+                                        <td className="border text-center w-10 h-12 px-2">
+                                            <img
+                                                className="w-full h-full object-cover mx-auto"
+                                                src={course.photo}
+                                                alt={course.course_name}
+                                            />
+                                        </td>
+
+                                        <td className="border text-center">
+                                            {course.course_name}
+                                        </td>
+
+                                        <td className="border text-center">
+                                            {order.name}
+                                        </td>
+
+                                        <td className="border text-center">
+                                            {order.course_qty}
+                                        </td>
+
+                                        <td className="border text-center">
+                                            Tk {order.course_fee}
+                                        </td>
+
+                                        <td className="border text-center">
+                                            Tk {order.total_course_fee}
+                                        </td>
+                                    </tr>                                   
                                 </tbody>
                             </table>
                         </div>

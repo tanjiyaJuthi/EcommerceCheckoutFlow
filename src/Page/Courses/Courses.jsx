@@ -14,8 +14,6 @@ const Courses = () => {
               const res = await fetch(`${import.meta.env.VITE_PROJECT_URL}/api/get-course-list`);
               const data = await res.json();
 
-              // console.log(data.courseData);
-
               setCourses(data.courseData || []);
           } catch (error) {
               if (import.meta.env.DEV) {
